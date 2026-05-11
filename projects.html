@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verkefni — Okið</title>
+    <meta name="description" content="Verkefni Okið.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="has-glacier-bg glacier-center-left">
+
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="images/okid_logo_white.png" alt="Okið" class="nav-logo-img">
+        </a>
+        <ul class="nav-links">
+            <li><a href="projects.html" class="active"><span data-is="Verkefni" data-en="Projects">Verkefni</span></a></li>
+            <li><a href="about.html"><span data-is="Um Okið" data-en="About">Um Okið</span></a></li>
+            <li><a href="contact.html"><span data-is="Hafa samband" data-en="Contact">Hafa samband</span></a></li>
+        </ul>
+        <button id="lang-toggle" class="lang-toggle">EN</button>
+    </nav>
+
+    <main>
+        <div class="page-header">
+            <h1 data-is="Verkefni" data-en="Projects">Verkefni</h1>
+        </div>
+
+        <div class="projects-grid">
+
+            <article class="project-card" onclick="window.location='vecct-milan.html'" style="cursor: pointer;">
+                <div class="project-thumbnail" style="padding: 0; overflow: hidden;">
+                    <img src="images/vecct-milan-thumb.jpg" alt="Vecct Mílan" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="project-info">
+                    <p class="project-meta" data-is="Heimildarsería &mdash; 4 þættir &mdash; 2026" data-en="Documentary series &mdash; 4 Episodes &mdash; 2026">Heimildarsería &mdash; 4 þættir &mdash; 2026</p>
+                    <h2 class="project-title">Vecct Mílan</h2>
+                    <p class="project-description"
+                       data-is="Fjögurra þátta heimildarsería sem fjallar um íþróttasögu Íslands, hlaupamenninguna, millivegalengdir og allt það tilfinningalega álag sem með sportinu fylgir."
+                       data-en="A four-part documentary series exploring the history and culture of competitive running in Iceland, with a special focus on the tradition of middle-distance racing and the athletes who have defined it.">
+                        Fjögurra þátta heimildarsería sem fjallar um íþróttasögu Íslands, hlaupamenninguna, millivegalengdir og allt það tilfinningalega álag sem með sportinu fylgir.
+                    </p>
+                </div>
+            </article>
+
+
+            <article class="project-card">
+                <div class="project-thumbnail">
+                    <span data-is="Kemur bráðlega" data-en="Coming soon">Kemur bráðlega</span>
+                </div>
+                <div class="project-info">
+                    <p class="project-meta" data-is="Heimildarmynd &mdash; 2026" data-en="Documentary &mdash; 2026">Heimildarmynd &mdash; 2026</p>
+                    <h2 class="project-title">STRÆTÓ</h2>
+                    <p class="project-description"
+                       data-is="Heimildarmynd í þróun."
+                       data-en="Documentary in development.">
+                        Heimildarmynd í þróun.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <span class="footer-copy">&copy; 2026 Okið</span>
+    </footer>
+
+    <script src="lang.js"></script>
+</body>
+</html>

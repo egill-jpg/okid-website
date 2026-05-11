@@ -1,0 +1,470 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #0d0d0d;
+    --white: #ffffff;
+    --navy: #0b0f1a;
+    --navy-light: #141929;
+    --navy-border: #1e2640;
+    --gray-400: #8892aa;
+    --gray-600: #a0aac0;
+    --gray-800: #c8d0e0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--white);
+    background: var(--navy);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ── Navigation ── */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    background: none;
+    border-bottom: none;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo-img {
+    height: 58px;
+    width: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    margin-left: auto;
+}
+
+.nav-links a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white);
+}
+
+.lang-toggle {
+    background: none;
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    margin-left: 1.5rem;
+}
+
+.lang-toggle:hover {
+    color: var(--white);
+    border-color: var(--gray-600);
+}
+
+/* ── Main content ── */
+
+main {
+    flex: 1;
+    padding-top: 5rem;
+}
+
+/* ── Home ── */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 5rem);
+    padding: 4rem 3rem;
+    max-width: 900px;
+}
+
+.hero-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 2rem;
+}
+
+.hero-tagline {
+    font-size: 1.05rem;
+    color: var(--gray-600);
+    max-width: 420px;
+    line-height: 1.7;
+}
+
+/* ── Glacier background ── */
+
+body.has-glacier-bg {
+    background-image: url('images/ok_glacier_etching.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+body.has-glacier-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 15, 26, 0.55);
+    z-index: 0;
+    pointer-events: none;
+}
+
+body.has-glacier-bg > * {
+    position: relative;
+    z-index: 1;
+}
+
+body.glacier-left         { background-position: 1% center; }
+body.glacier-center-left  { background-position: 25% center; }
+body.glacier-center-right { background-position: 75% center; }
+body.glacier-right        { background-position: 98% center; }
+
+@keyframes glacier-slide-right {
+    from { background-position: 1% center; }
+    to   { background-position: 98% center; }
+}
+
+body.glacier-slide {
+    animation: glacier-slide-right 30s linear infinite alternate;
+}
+
+.home-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-hero-logo img {
+    width: min(520px, 70vw);
+    height: auto;
+    display: block;
+}
+
+nav.nav-no-logo {
+    justify-content: flex-end;
+}
+
+/* ── Page header ── */
+
+.page-header {
+    padding: 4rem 3rem 3rem;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* ── Projects ── */
+
+.projects-grid {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    max-width: 960px;
+}
+
+.project-thumbnail {
+    background: var(--navy-light);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-400);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--navy-border);
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.project-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.project-title {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+}
+
+.project-description {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    border: 1px solid var(--navy-border);
+    padding: 0.3rem 0.7rem;
+}
+
+/* ── Series details ── */
+
+.series-details {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.series-detail-item {
+    font-size: 0.9rem;
+    color: var(--gray-400);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    text-align: center;
+}
+
+.series-highlight {
+    color: var(--gray-800);
+}
+
+/* ── Episodes ── */
+
+.episodes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    padding: 4rem 3rem;
+}
+
+.episode-card {
+    width: 100%;
+    max-width: 960px;
+}
+
+.episode-frame {
+    width: 100%;
+    overflow: hidden;
+}
+
+.episode-frame video {
+    width: 100%;
+    display: block;
+}
+
+.episode-label {
+    margin-top: 1rem;
+}
+
+.episode-number {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.episode-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-top: 0.35rem;
+}
+
+/* ── About ── */
+
+.about-section {
+    padding: 4rem 3rem;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ── Contact ── */
+
+.contact-section {
+    padding: 4rem 3rem;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-intro {
+    font-size: 1rem;
+    color: var(--gray-600);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1.25rem 0;
+}
+
+.contact-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.contact-value {
+    font-size: 0.95rem;
+}
+
+.contact-value a {
+    transition: color 0.2s;
+}
+
+.contact-value a:hover {
+    color: var(--gray-600);
+}
+
+/* ── Footer ── */
+
+footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-copy {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    nav {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .page-header {
+        padding: 3rem 1.5rem 2rem;
+    }
+
+    .projects-grid {
+        padding: 2rem 1.5rem;
+    }
+
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact-section {
+        padding: 3rem 1.5rem;
+    }
+
+    footer {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}
