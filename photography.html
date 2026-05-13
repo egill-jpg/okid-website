@@ -31,27 +31,15 @@
         </div>
 
         <div class="gallery-section">
-            <h2 class="gallery-title">scapes of a regular life</h2>
-            <div class="slideshow" id="slideshow-lal">
+            <h2 class="gallery-title">Scapes and portraits</h2>
+            <div class="slideshow" id="slideshow-main">
                 <button class="slide-arrow slide-prev" aria-label="Previous">&#8592;</button>
                 <div class="slide-image-wrap">
-                    <img id="slide-img" src="images/lal/1.JPG" alt="1 of 15">
+                    <img id="slide-img" src="" alt="">
                 </div>
                 <button class="slide-arrow slide-next" aria-label="Next">&#8594;</button>
             </div>
             <p class="slide-counter"><span id="slide-current">1</span> / <span id="slide-total"></span></p>
-        </div>
-
-        <div class="gallery-section">
-            <h2 class="gallery-title">Portraits</h2>
-            <div class="slideshow" id="slideshow-portraits">
-                <button class="slide-arrow slide-prev" aria-label="Previous">&#8592;</button>
-                <div class="slide-image-wrap">
-                    <img id="slide-img-portraits" src="images/portraits/IMG_8724.jpg" alt="1 of 10">
-                </div>
-                <button class="slide-arrow slide-next" aria-label="Next">&#8594;</button>
-            </div>
-            <p class="slide-counter"><span id="slide-current-portraits">1</span> / <span id="slide-total-portraits"></span></p>
         </div>
     </main>
 
@@ -61,7 +49,7 @@
 
     <script src="lang.js"></script>
     <script>
-        const images = [
+        const allImages = [
             'images/lal/1.JPG',
             'images/lal/2.JPG',
             'images/lal/3.JPG',
@@ -83,24 +71,6 @@
             'images/lal/IMG_8720.jpg',
             'images/lal/IMG_8721.jpg',
             'images/lal/IMG_8722.jpg',
-        ];
-        let current = 0;
-        const img = document.getElementById('slide-img');
-        const counter = document.getElementById('slide-current');
-        document.getElementById('slide-total').textContent = images.length;
-
-        function goTo(index) {
-            current = (index + images.length) % images.length;
-            img.src = images[current];
-            img.alt = (current + 1) + ' of ' + images.length;
-            counter.textContent = current + 1;
-        }
-
-        document.querySelector('#slideshow-lal .slide-prev').addEventListener('click', () => goTo(current - 1));
-        document.querySelector('#slideshow-lal .slide-next').addEventListener('click', () => goTo(current + 1));
-
-        // Portraits slideshow
-        const portraitImages = [
             'images/portraits/IMG_8724.jpg',
             'images/portraits/IMG_8725.jpg',
             'images/portraits/IMG_8726.jpg',
@@ -112,20 +82,34 @@
             'images/portraits/IMG_8732.jpg',
             'images/portraits/IMG_8733.jpg',
         ];
-        let portraitCurrent = 0;
-        const portraitImg = document.getElementById('slide-img-portraits');
-        const portraitCounter = document.getElementById('slide-current-portraits');
-        document.getElementById('slide-total-portraits').textContent = portraitImages.length;
 
-        function goToPortrait(index) {
-            portraitCurrent = (index + portraitImages.length) % portraitImages.length;
-            portraitImg.src = portraitImages[portraitCurrent];
-            portraitImg.alt = (portraitCurrent + 1) + ' of ' + portraitImages.length;
-            portraitCounter.textContent = portraitCurrent + 1;
+        // Shuffle using Fisher-Yates
+        for (let i = allImages.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allImages[i], allImages[j]] = [allImages[j], allImages[i]];
         }
 
-        document.querySelector('#slideshow-portraits .slide-prev').addEventListener('click', () => goToPortrait(portraitCurrent - 1));
-        document.querySelector('#slideshow-portraits .slide-next').addEventListener('click', () => goToPortrait(portraitCurrent + 1));
+        let current = 0;
+        const img = document.getElementById('slide-img');
+        const counter = document.getElementById('slide-current');
+        document.getElementById('slide-total').textContent = allImages.length;
+
+        function goTo(index) {
+            current = (index + allImages.length) % allImages.length;
+            img.src = allImages[current];
+            img.alt = (current + 1) + ' of ' + allImages.length;
+            counter.textContent = current + 1;
+        }
+
+        goTo(0);
+
+        document.querySelector('#slideshow-main .slide-prev').addEventListener('click', () => goTo(current - 1));
+        document.querySelector('#slideshow-main .slide-next').addEventListener('click', () => goTo(current + 1));
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') goTo(current - 1);
+            if (e.key === 'ArrowRight') goTo(current + 1);
+        });
     </script>
 </body>
 </html>
