@@ -32,7 +32,7 @@
 
         <div class="gallery-section">
             <h2 class="gallery-title">scapes of a regular life</h2>
-            <div class="slideshow">
+            <div class="slideshow" id="slideshow-lal">
                 <button class="slide-arrow slide-prev" aria-label="Previous">&#8592;</button>
                 <div class="slide-image-wrap">
                     <img id="slide-img" src="images/lal/1.JPG" alt="1 of 15">
@@ -40,6 +40,18 @@
                 <button class="slide-arrow slide-next" aria-label="Next">&#8594;</button>
             </div>
             <p class="slide-counter"><span id="slide-current">1</span> / <span id="slide-total"></span></p>
+        </div>
+
+        <div class="gallery-section">
+            <h2 class="gallery-title">Portraits</h2>
+            <div class="slideshow" id="slideshow-portraits">
+                <button class="slide-arrow slide-prev" aria-label="Previous">&#8592;</button>
+                <div class="slide-image-wrap">
+                    <img id="slide-img-portraits" src="images/portraits/IMG_8724.jpg" alt="1 of 10">
+                </div>
+                <button class="slide-arrow slide-next" aria-label="Next">&#8594;</button>
+            </div>
+            <p class="slide-counter"><span id="slide-current-portraits">1</span> / <span id="slide-total-portraits"></span></p>
         </div>
     </main>
 
@@ -84,13 +96,36 @@
             counter.textContent = current + 1;
         }
 
-        document.querySelector('.slide-prev').addEventListener('click', () => goTo(current - 1));
-        document.querySelector('.slide-next').addEventListener('click', () => goTo(current + 1));
+        document.querySelector('#slideshow-lal .slide-prev').addEventListener('click', () => goTo(current - 1));
+        document.querySelector('#slideshow-lal .slide-next').addEventListener('click', () => goTo(current + 1));
 
-        document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowLeft') goTo(current - 1);
-            if (e.key === 'ArrowRight') goTo(current + 1);
-        });
+        // Portraits slideshow
+        const portraitImages = [
+            'images/portraits/IMG_8724.jpg',
+            'images/portraits/IMG_8725.jpg',
+            'images/portraits/IMG_8726.jpg',
+            'images/portraits/IMG_8727.jpg',
+            'images/portraits/IMG_8728.jpg',
+            'images/portraits/IMG_8729.jpg',
+            'images/portraits/IMG_8730.jpg',
+            'images/portraits/IMG_8731.jpg',
+            'images/portraits/IMG_8732.jpg',
+            'images/portraits/IMG_8733.jpg',
+        ];
+        let portraitCurrent = 0;
+        const portraitImg = document.getElementById('slide-img-portraits');
+        const portraitCounter = document.getElementById('slide-current-portraits');
+        document.getElementById('slide-total-portraits').textContent = portraitImages.length;
+
+        function goToPortrait(index) {
+            portraitCurrent = (index + portraitImages.length) % portraitImages.length;
+            portraitImg.src = portraitImages[portraitCurrent];
+            portraitImg.alt = (portraitCurrent + 1) + ' of ' + portraitImages.length;
+            portraitCounter.textContent = portraitCurrent + 1;
+        }
+
+        document.querySelector('#slideshow-portraits .slide-prev').addEventListener('click', () => goToPortrait(portraitCurrent - 1));
+        document.querySelector('#slideshow-portraits .slide-next').addEventListener('click', () => goToPortrait(portraitCurrent + 1));
     </script>
 </body>
 </html>
