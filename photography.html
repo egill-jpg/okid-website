@@ -39,7 +39,7 @@
                 </div>
                 <button class="slide-arrow slide-next" aria-label="Next">&#8594;</button>
             </div>
-            <p class="slide-counter"><span id="slide-current">1</span> / 15</p>
+            <p class="slide-counter"><span id="slide-current">1</span> / <span id="slide-total"></span></p>
         </div>
     </main>
 
@@ -63,12 +63,19 @@
             'images/lal/11.JPG',
             'images/lal/12.JPG',
             'images/lal/13.jpg',
-            'images/lal/14.jpg',
-            'images/lal/15.jpg',
+            'images/lal/IMG_8715.jpg',
+            'images/lal/IMG_8716.jpg',
+            'images/lal/IMG_8717.jpg',
+            'images/lal/IMG_8718.jpg',
+            'images/lal/IMG_8719.jpg',
+            'images/lal/IMG_8720.jpg',
+            'images/lal/IMG_8721.jpg',
+            'images/lal/IMG_8722.jpg',
         ];
         let current = 0;
         const img = document.getElementById('slide-img');
         const counter = document.getElementById('slide-current');
+        document.getElementById('slide-total').textContent = images.length;
 
         function goTo(index) {
             current = (index + images.length) % images.length;
