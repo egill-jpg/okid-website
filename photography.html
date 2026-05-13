@@ -32,23 +32,14 @@
 
         <div class="gallery-section">
             <h2 class="gallery-title">The landscapes and architecture of a regular life</h2>
-            <div class="photo-gallery">
-                <img src="images/lal/1.JPG" alt="1">
-                <img src="images/lal/2.JPG" alt="2">
-                <img src="images/lal/3.JPG" alt="3">
-                <img src="images/lal/4.JPG" alt="4">
-                <img src="images/lal/5.JPG" alt="5">
-                <img src="images/lal/6.JPG" alt="6">
-                <img src="images/lal/7.JPG" alt="7">
-                <img src="images/lal/8.JPG" alt="8">
-                <img src="images/lal/9.JPG" alt="9">
-                <img src="images/lal/10.JPG" alt="10">
-                <img src="images/lal/11.JPG" alt="11">
-                <img src="images/lal/12.JPG" alt="12">
-                <img src="images/lal/13.jpg" alt="13">
-                <img src="images/lal/14.jpg" alt="14">
-                <img src="images/lal/15.jpg" alt="15">
+            <div class="slideshow">
+                <button class="slide-arrow slide-prev" aria-label="Previous">&#8592;</button>
+                <div class="slide-image-wrap">
+                    <img id="slide-img" src="images/lal/1.JPG" alt="1 of 15">
+                </div>
+                <button class="slide-arrow slide-next" aria-label="Next">&#8594;</button>
             </div>
+            <p class="slide-counter"><span id="slide-current">1</span> / 15</p>
         </div>
     </main>
 
@@ -57,5 +48,42 @@
     </footer>
 
     <script src="lang.js"></script>
+    <script>
+        const images = [
+            'images/lal/1.JPG',
+            'images/lal/2.JPG',
+            'images/lal/3.JPG',
+            'images/lal/4.JPG',
+            'images/lal/5.JPG',
+            'images/lal/6.JPG',
+            'images/lal/7.JPG',
+            'images/lal/8.JPG',
+            'images/lal/9.JPG',
+            'images/lal/10.JPG',
+            'images/lal/11.JPG',
+            'images/lal/12.JPG',
+            'images/lal/13.jpg',
+            'images/lal/14.jpg',
+            'images/lal/15.jpg',
+        ];
+        let current = 0;
+        const img = document.getElementById('slide-img');
+        const counter = document.getElementById('slide-current');
+
+        function goTo(index) {
+            current = (index + images.length) % images.length;
+            img.src = images[current];
+            img.alt = (current + 1) + ' of ' + images.length;
+            counter.textContent = current + 1;
+        }
+
+        document.querySelector('.slide-prev').addEventListener('click', () => goTo(current - 1));
+        document.querySelector('.slide-next').addEventListener('click', () => goTo(current + 1));
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') goTo(current - 1);
+            if (e.key === 'ArrowRight') goTo(current + 1);
+        });
+    </script>
 </body>
 </html>
